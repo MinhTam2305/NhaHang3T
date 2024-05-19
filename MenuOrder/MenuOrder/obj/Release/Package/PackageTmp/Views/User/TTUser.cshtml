@@ -1,0 +1,53 @@
+﻿﻿@model MenuOrder.Models.Account
+@{
+    ViewBag.Title = "TTUser";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<br />
+<h3 style="text-align:center">Thông tin người dùng @Model.DisplayName</h3>
+<br />
+<table border="1">
+    <tr style="height:60px">
+        <th width="150px">
+            User Name
+        </th>
+        <th width="250px">
+            Email
+        </th>
+        <th width="350px">
+            Địa chỉ
+        </th>
+       
+        <th></th>
+    </tr>
+
+
+    <tr style="height:100px;text-align:center">
+        <td>
+            @Html.DisplayFor(model => model.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Address)
+        </td>
+    </tr>
+
+
+</table>
+<p>
+   @* @Html.ActionLink("Sửa", "Edit") |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<style>
+    table {
+        margin: auto;
+    }
+
+    a {
+        text-decoration: none;
+    }
+</style>
+

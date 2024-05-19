@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\24hdelam\\MenuOrder\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5CE9114E-3ED9-4822-AD05-39ABD7A8DA40}|MenuOrder\\MenuOrder.csproj|d:\\24hdelam\\menuorder\\menuorder\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CE9114E-3ED9-4822-AD05-39ABD7A8DA40}|MenuOrder\\MenuOrder.csproj|solutionrelative:menuorder\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CE9114E-3ED9-4822-AD05-39ABD7A8DA40}|MenuOrder\\MenuOrder.csproj|d:\\24hdelam\\menuorder\\menuorder\\controllers\\danhmuccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CE9114E-3ED9-4822-AD05-39ABD7A8DA40}|MenuOrder\\MenuOrder.csproj|solutionrelative:menuorder\\controllers\\danhmuccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CE9114E-3ED9-4822-AD05-39ABD7A8DA40}|MenuOrder\\MenuOrder.csproj|d:\\24hdelam\\menuorder\\menuorder\\views\\user\\ttuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5CE9114E-3ED9-4822-AD05-39ABD7A8DA40}|MenuOrder\\MenuOrder.csproj|solutionrelative:menuorder\\views\\user\\ttuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CE9114E-3ED9-4822-AD05-39ABD7A8DA40}|MenuOrder\\MenuOrder.csproj|D:\\24hdelam\\MenuOrder\\menuorder\\views\\menu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5CE9114E-3ED9-4822-AD05-39ABD7A8DA40}|MenuOrder\\MenuOrder.csproj|solutionrelative:menuorder\\views\\menu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DanhMucController.cs",
+              "DocumentMoniker": "D:\\24hdelam\\MenuOrder\\MenuOrder\\Controllers\\DanhMucController.cs",
+              "RelativeDocumentMoniker": "MenuOrder\\Controllers\\DanhMucController.cs",
+              "ToolTip": "D:\\24hdelam\\MenuOrder\\MenuOrder\\Controllers\\DanhMucController.cs",
+              "RelativeToolTip": "MenuOrder\\Controllers\\DanhMucController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-19T14:50:59.129Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RouteConfig.cs",
+              "DocumentMoniker": "D:\\24hdelam\\MenuOrder\\MenuOrder\\App_Start\\RouteConfig.cs",
+              "RelativeDocumentMoniker": "MenuOrder\\App_Start\\RouteConfig.cs",
+              "ToolTip": "D:\\24hdelam\\MenuOrder\\MenuOrder\\App_Start\\RouteConfig.cs",
+              "RelativeToolTip": "MenuOrder\\App_Start\\RouteConfig.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABIAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-19T14:49:54.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TTUser.cshtml",
+              "DocumentMoniker": "D:\\24hdelam\\MenuOrder\\MenuOrder\\Views\\User\\TTUser.cshtml",
+              "RelativeDocumentMoniker": "MenuOrder\\Views\\User\\TTUser.cshtml",
+              "ToolTip": "D:\\24hdelam\\MenuOrder\\MenuOrder\\Views\\User\\TTUser.cshtml",
+              "RelativeToolTip": "MenuOrder\\Views\\User\\TTUser.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-19T14:15:47.007Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\24hdelam\\MenuOrder\\MenuOrder\\Views\\Menu\\Index.cshtml",
+              "RelativeDocumentMoniker": "MenuOrder\\Views\\Menu\\Index.cshtml",
+              "ToolTip": "D:\\24hdelam\\MenuOrder\\MenuOrder\\Views\\Menu\\Index.cshtml",
+              "RelativeToolTip": "MenuOrder\\Views\\Menu\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-19T14:15:20.657Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MenuOrder.Models.FoodCategory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center;">QUẢN LÝ LOẠI SẢN PHẨM</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodCategory1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodCategory1)
+        </td>
+        <td>
+            <a href="@Url.Action("Details", "FoodCategory",new {id=item.IdFC})" class="btn btn-sm btn-info" name="details">
+                <i class='bx bxs-detail'></i>
+            </a>
+            <a href="@Url.Action("Delete", "FoodCategory",new {id=item.IdFC})" class="btn btn-sm btn-danger" name="delete">
+                <i class='bx bxs-message-square-x'></i>
+            </a>
+            <a href="@Url.Action("Edit", "FoodCategory",new {id=item.IdFC})" class="btn btn-sm btn-warning" name="update">
+                <i class='bx bx-cog'></i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

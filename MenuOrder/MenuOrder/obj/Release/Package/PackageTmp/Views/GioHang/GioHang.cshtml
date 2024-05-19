@@ -1,0 +1,103 @@
+﻿@model MenuOrder.Models.Bill
+
+@{
+    ViewBag.Title = "Giỏ Hàng";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<style>
+    /* Định dạng cho tiêu đề */
+    h2 {
+        color: #333;
+        font-size: 24px;
+        text-align: center;
+    }
+
+    /* Định dạng cho bảng */
+    .table-responsive {
+        overflow-x: auto;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Hóa đơn cho bàn số @Model.IdTable</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Tên món</th>
+                            <th>Số lượng</th>
+                            <th>Giá</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @Html.Action("GioHangPartial", "GioHang")
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"><strong>Tổng tiền:</strong></td>
+                            <td>@string.Format("{0:#,##0,0}", @Model.TotalMoney) VND</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <form action="@Url.Action("XacNhanThanhToan", "GioHang")" method="post">
+                <div class="form-group">
+                    <label for="paymentMethod">Hình thức thanh toán:</label>
+                    <select class="form-control" id="paymentMethod" name="paymentMethod">
+                        <option value="Trực tiếp">Thanh toán trực tiếp</option>
+                        <option value="Chuyển khoản">Chuyển khoản</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" onclick="confirmPay()">Xác nhận thanh toán</button>
+                    <button type="button" class="btn btn-danger" onclick="confirmDelete()">Xóa hóa đơn</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function confirmPay() {
+        if (confirm('Chắn chắn khách hàng đã thanh toán?')) {
+            var paymentMethod = document.getElementById('paymentMethod').value;
+            // Tạo một object FormData chứa dữ liệu để gửi POST request
+            var formData = new FormData();
+            formData.append('paymentMethod', paymentMethod);
+            // Sử dụng fetch để gửi POST request
+            fetch('@Url.Action("XacNhanThanhToan", "GioHang")', {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                // Xử lý phản hồi từ server nếu cần
+                if (response.ok) {
+                    // Chuyển hướng sau khi xác nhận thanh toán thành công
+                    window.location.href = '@Url.Action("Index", "Menu")';
+                }
+            });
+        }
+    }
+
+function confirmDelete() {
+    if (confirm('Bạn có chắc chắn muốn xóa hóa đơn này?')) {
+            
+        // Tạo một object FormData chứa dữ liệu để gửi POST request
+        var formData = new FormData();
+       
+        // Sử dụng fetch để gửi POST request
+        fetch('@Url.Action("XoaHoaDon", "GioHang")', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            // Xử lý phản hồi từ server nếu cần
+            if (response.ok) {
+                // Chuyển hướng sau khi xác nhận thanh toán thành công
+                window.location.href = '@Url.Action("Index", "Menu")';
+            }
+        });
+    }
+}
+
+</script>
