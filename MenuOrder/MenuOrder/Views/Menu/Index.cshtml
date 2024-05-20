@@ -78,6 +78,41 @@ else
             @{ Session["HoaDon"] = null; }
         });
     }
+
+        // Kiểm tra nếu Session["HoaDon"] không null
+        @if (Session["thembill"] != null)
+        {
+            <text>
+            Swal.fire({
+                title: 'Thông báo',
+                text: '@Session["thembill"]',
+                icon: 'info',
+                confirmButtonText: 'Đóng'
+            });
+            </text>
+            // Xóa thông báo sau khi hiển thị
+            Session["thembill"] = null;
+        }
+
+        @if (Session["themgiohang"] != null)
+        {
+     <text>
+    Swal.fire({
+    title: 'Thông báo',
+    text: 'Đăng nhập để sử dụng chức năng',
+    icon: 'info',
+    confirmButtonText: 'Đóng'
+});
+     </text>
+            // Xóa thông báo sau khi hiển thị
+            Session["themgiohang"] = null;
+        }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("SweetAlert2 script loaded and showLoginAlert function defined.");
+    });
+</script>
+
     document.getElementById("sortOptions").onchange = function () {
         var selectedOption = this.value;
         if (selectedOption !== "#") {

@@ -19,14 +19,36 @@
                 </div>
                 <h4><a href="@Url.Action("ChiTietMon", "Menu", new { id = product.IdFood })">@string.Format("{0:#,##0,0}", @product.Price)</a></h4>
             </div>
-            <a href="@Url.Action("ThemGioHang","GioHang", new { ms = product.IdFood, url =Request.Url.ToString() })">
-                <i class="fal fa-shopping-cart cart"></i>
-            </a>
+            @if (Session["TaiKhoan"] != null)
+            {
+                <a href="@Url.Action("Create", "GioHang", new { ms = product.IdFood, url = Request.Url.ToString() })">
+                    <i class="fal fa-shopping-cart cart"></i>
+                </a>
+            }
+            else
+            {
+                <a href="javascript:void(0);" onclick="showLoginAlert()">
+                    <i class="fal fa-shopping-cart cart"></i>
+                </a>
+            }
         </div>
     }
 </div>
 <div class="right-align">
     <a href="~/DanhMuc/Index/2" id="myLink">Xem tất cả</a>
 </div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function showLoginAlert() {
+            Swal.fire({
+                title: 'Thông báo',
+                text: 'Đăng nhập để sử dụng chức năng',
+                icon: 'info',
+                confirmButtonText: 'Đóng'
+            });
+        }
+    </script>
+}
 
 

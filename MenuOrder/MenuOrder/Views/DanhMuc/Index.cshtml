@@ -37,7 +37,7 @@
                     </div>
                     <h4><a href="@Url.Action("ChiTietMon", "Menu", new { id = product.IdFood })">@string.Format("{0:#,##0,0}", @product.Price)</a></h4>
                 </div>
-                <a href="@Url.Action("ThemGioHang","GioHang", new { ms = product.IdFood, url =Request.Url.ToString() })">
+                <a href="@Url.Action("Create","GioHang", new { ms = product.IdFood, url =Request.Url.ToString() })">
                     <i class="fal fa-shopping-cart cart"></i>
                 </a>
             </div>

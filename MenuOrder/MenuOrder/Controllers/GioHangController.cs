@@ -95,87 +95,95 @@ namespace MenuOrder.Controllers
         }
         public ActionResult Create(Bill bill, int ms, DetailBill detailBill, string url)
         {
-            int idBan = 0;
-            HttpCookie selectedTableCookie = Request.Cookies["selectedTable"];
-            string selectedTable = null;
-            if (selectedTableCookie != null)
+            if (Session["TaiKhoan"] != null)
             {
-                selectedTable = selectedTableCookie.Value;
-                idBan = int.Parse(selectedTable);
-            }
-            string status = "Chưa thanh toán";
-            Bill bill2 = data.Bills.FirstOrDefault(n => n.IdTable == idBan && n.Status == status);
-            Food f = data.Foods.FirstOrDefault(n => n.IdFood == ms);
-            if (bill2 == null)
-            {
-
-               
-
-
-                bill.IdAccount = 1;
-                bill.TimeCome = DateTime.Now;
-                bill.Status = "Chưa thanh toán";
-                bill.IdTable = idBan;
-                bill.TotalMoney = f.Price;
-                data.Bills.InsertOnSubmit(bill);
-                data.SubmitChanges();
-
-                // Tạo chi tiết hóa đơn mới
-               
-                DetailBill newDetailBill = new DetailBill();
-                newDetailBill.IdBill = bill.IdBill; // Lấy idBill từ hóa đơn mới
-                newDetailBill.IdFood = f.IdFood;
-                newDetailBill.Quality = 1;
-                newDetailBill.PriceDetailBill = f.Price;
-                var table = data.FoodTables.FirstOrDefault(t => t.IdTable == idBan);
-                if (table != null)
+                int idBan = 0;
+                HttpCookie selectedTableCookie = Request.Cookies["selectedTable"];
+                string selectedTable = null;
+                if (selectedTableCookie != null)
                 {
-                    table.Status = "Có khách";
+                    selectedTable = selectedTableCookie.Value;
+                    idBan = int.Parse(selectedTable);
                 }
-                data.DetailBills.InsertOnSubmit(newDetailBill);
-                data.SubmitChanges();
-
-            }
-            else
-            {
-             
-                int idBillMoi = bill2.IdBill;
-
-                // Kiểm tra nếu món đồ ăn đã tồn tại trong chi tiết hóa đơn
-                DetailBill existingDetail = data.DetailBills.FirstOrDefault(d => d.IdBill == idBillMoi && d.IdFood == f.IdFood);
-                if (existingDetail != null)
+                string status = "Chưa thanh toán";
+                Bill bill2 = data.Bills.FirstOrDefault(n => n.IdTable == idBan && n.Status == status);
+                Food f = data.Foods.FirstOrDefault(n => n.IdFood == ms);
+                if (bill2 == null)
                 {
-                    // Nếu đã tồn tại, chỉ cập nhật số lượng và giá
-                    existingDetail.Quality += 1;
-                    existingDetail.PriceDetailBill = existingDetail.Quality * f.Price;
+
+
+
+
+                    bill.IdAccount = 1;
+                    bill.TimeCome = DateTime.Now;
+                    bill.Status = "Chưa thanh toán";
+                    bill.IdTable = idBan;
+                    bill.TotalMoney = f.Price;
+                    data.Bills.InsertOnSubmit(bill);
+                    data.SubmitChanges();
+
+                    // Tạo chi tiết hóa đơn mới
+
+                    DetailBill newDetailBill = new DetailBill();
+                    newDetailBill.IdBill = bill.IdBill; // Lấy idBill từ hóa đơn mới
+                    newDetailBill.IdFood = f.IdFood;
+                    newDetailBill.Quality = 1;
+                    newDetailBill.PriceDetailBill = f.Price;
+                    var table = data.FoodTables.FirstOrDefault(t => t.IdTable == idBan);
+                    if (table != null)
+                    {
+                        table.Status = "Có khách";
+                    }
+                    Session["thembill"] = "Da them vao gio hang";
+                    data.DetailBills.InsertOnSubmit(newDetailBill);
+                    data.SubmitChanges();
+
                 }
                 else
                 {
-                    // Nếu chưa tồn tại, tạo mới một chi tiết hóa đơn
-                    detailBill.IdBill = idBillMoi;
-                    detailBill.IdFood = f.IdFood;
-                    detailBill.Quality = 1;
-                    detailBill.PriceDetailBill = f.Price;
-                    data.DetailBills.InsertOnSubmit(detailBill);
-                }
 
-              
-                data.SubmitChanges();
-            }
-            // Cập nhật tổng tiền của hóa đơn
-            var updatedBill = data.Bills.FirstOrDefault(b => b.IdTable == idBan && b.Status == status);
-            if (updatedBill != null)
-            {
-                double totalMoney = 0;
-                foreach (var detail in updatedBill.DetailBills)
+                    int idBillMoi = bill2.IdBill;
+
+                    // Kiểm tra nếu món đồ ăn đã tồn tại trong chi tiết hóa đơn
+                    DetailBill existingDetail = data.DetailBills.FirstOrDefault(d => d.IdBill == idBillMoi && d.IdFood == f.IdFood);
+                    if (existingDetail != null)
+                    {
+                        // Nếu đã tồn tại, chỉ cập nhật số lượng và giá
+                        existingDetail.Quality += 1;
+                        existingDetail.PriceDetailBill = existingDetail.Quality * f.Price;
+                    }
+                    else
+                    {
+                        // Nếu chưa tồn tại, tạo mới một chi tiết hóa đơn
+                        detailBill.IdBill = idBillMoi;
+                        detailBill.IdFood = f.IdFood;
+                        detailBill.Quality = 1;
+                        detailBill.PriceDetailBill = f.Price;
+                        data.DetailBills.InsertOnSubmit(detailBill);
+                    }
+
+                    Session["thembill"] = "Da them vao gio hang";
+                    data.SubmitChanges();
+                }
+                // Cập nhật tổng tiền của hóa đơn
+                var updatedBill = data.Bills.FirstOrDefault(b => b.IdTable == idBan && b.Status == status);
+                if (updatedBill != null)
                 {
-                    totalMoney +=  detail.PriceDetailBill??0;
+                    double totalMoney = 0;
+                    foreach (var detail in updatedBill.DetailBills)
+                    {
+                        totalMoney += detail.PriceDetailBill ?? 0;
+                    }
+                    updatedBill.TotalMoney = totalMoney;
+                    data.SubmitChanges();
                 }
-                updatedBill.TotalMoney = totalMoney;
-                data.SubmitChanges();
-            }
 
-            return Redirect(url);
+                return Redirect(url);
+            }
+            
+                Session["themgiohang"] = "Dang nhap de su sung chuc nang";
+            return RedirectToAction("Index","Menu");
+
         }
       
        
