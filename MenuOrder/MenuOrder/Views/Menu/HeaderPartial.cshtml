@@ -1,0 +1,116 @@
+﻿
+@model MenuOrder.Models.Food
+<section id="header">
+    <a href="@Url.Action("Index","Menu")">
+        <img src="~/img/logo3T.png" class="logo">
+    </a>
+    <div>
+        <ul id="navbar">
+            <li>
+                <a class="active" href="@Url.Action("Index","Menu")">Trang Chủ</a>
+            </li>
+            <li>
+                <a href="@Url.Action("GioiThieu","TrangMenu")">Giới thiệu</a>
+            </li>
+            <li>
+                @Html.Action("ItemPatrial", "Menu")
+            </li>
+
+            <li>
+                <a href="@Url.Action("QRTHANHTOAN","TrangMenu")">Mã QR Thanh Toán</a>
+            </li>
+            <li>
+                <a href="@Url.Action("LienHe","TrangMenu")">Liên hệ</a>
+            </li>
+
+        </ul>
+
+        <ul id="navbar1">
+            <li>
+                <form class="sbox" action="~/TimKiem/TimKiem" method="get">
+
+                    <input class="stext" type="text" id="search" name="q" placeholder="Tìm kiếm">
+                    <button type="submit" class="sbutton">Tìm</button>
+
+                </form>
+            </li>
+            @if (Session["TaiKhoan"] != null)
+            {
+                <li>
+                    <a href="@Url.Action("TTUser","User")">Xin chào: @Session["ten"].ToString()</a>
+                </li>
+
+                <li>
+                    <button class="btnLogout-popup">
+                        <a href="@Url.Action("DangXuat","User" ,new {url= Request.Url.ToString()})">Đăng xuất</a>
+                    </button>
+                </li>
+                <li id="lg-bag">
+                    <a href="@Url.Action("GioHang","GioHang")"><i class="far fa-shopping-bag"></i> Giỏ Hàng</a>
+                </li>
+            }
+
+            else
+            {
+
+                <li>
+                    <button class="btnLogin-popup">
+                        <a href="@Url.Action("DangNhap","User" ,new {url= Request.Url.ToString()})">Đăng nhập</a>
+                    </button>
+                </li>
+            }
+
+          
+
+
+
+            @* <a href="#" id="close"><i class="far fa-times"></i></a>*@
+        </ul>
+    </div>
+
+</section>
+<style>
+
+
+    .sbutton {
+        color: #e84118;
+        float: right;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 0px;
+        background: #DADADA;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        transition: 0.8s;
+    }
+
+    .stext {
+        border: none;
+        background: none;
+        outline: none;
+        float: left;
+        padding: 0;
+        color: #555;
+        font-size: 15px;
+        transition: 0.4s;
+        line-height: 40px;
+        width: 0px;
+    }
+
+    .sbox:hover > .stext {
+        width: 200px;
+        padding: 0 5px;
+        border-radius: 50px;
+    }
+
+    .sbox:hover > .sbutton {
+        background: #fff;
+    }
+
+    .fa-search {
+        color: #001EFF;
+    }
+</style>

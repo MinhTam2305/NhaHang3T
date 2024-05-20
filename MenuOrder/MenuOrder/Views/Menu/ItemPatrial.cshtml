@@ -1,0 +1,13 @@
+﻿
+@model IEnumerable<MenuOrder.Models.FoodCategory>
+<div class="dropdown">
+    <button class="dropbtn">Sản phẩm</button>
+    <div class="dropdown-content">
+        @foreach (var item in Model)
+        {
+            <a href="@Url.Action("index","DanhMuc",new { id = item.IdFC })"> @item.FoodCategory1</a>
+        }
+    </div>
+
+</div>
+

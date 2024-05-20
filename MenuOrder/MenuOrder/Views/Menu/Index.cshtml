@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@Styles.Render("~/Content/cssFIgure/ChiTiet.css")
+
+
+@section slider{
+    @Html.Action("SliderPartial", "Menu")
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+@if (Session["TaiKhoan"] != null)
+{
+    <section id="feature" class="section-p1">
+        <div class="custom-dropdown">
+
+
+            @Html.Action("Ban", "Menu")
+
+        </div>
+
+    </section>
+}
+
+
+else
+{ <section id="feature" class="section-p1">
+        <div class="custom-dropdown">
+
+
+            @Html.Action("Ban", "GioHang")
+
+        </div>
+
+    </section>
+
+}
+
+<section id=hero2>
+    <h2 class="hero2">Đồ ăn</h2>
+    <p class="hero3">Những sản phẩm đã hoặc sắp phát hành & cần đặt trước</p>
+</section>
+<section id="produce1" class="section-p1">
+
+    @Html.Action("ItemSanPhamOrder", "Menu")
+
+</section>
+<section id=hero2>
+    <h2 class="hero2">Đồ uống</h2>
+    <p class="hero3">Những sản phẩm đã hoặc sắp phát hành & cần đặt trước</p>
+</section>
+<section id="produce1" class="section-p1">
+    @Html.Action("DoUong", "Menu")
+</section>
+<!--<section id=hero3>
+    <h1 class="hero3-1">Nendoroid & Chibi Figure</h1>
+    <p class="hero3-2">Dễ thương và tiện lợi</p>
+</section>
+
+<section id="produce1" class="section-p1">-->
+@*  @Html.Action("ItemNendoroid", "Home")*@
+<!--</section>-->
+<script>
+
+   // Kiểm tra nếu ViewBag.HoaDon không null
+    if (@Html.Raw(Json.Encode(Session["HoaDon"])) != null) {
+        // Hiển thị thông báo SweetAlert2 với nội dung từ ViewBag.HoaDon
+        Swal.fire({
+            title: 'Thông báo',
+            text: '@Html.Raw(Json.Encode(Session["HoaDon"]))',
+            icon: 'info',
+            confirmButtonText: 'Đóng'
+        }).then(() => {
+            // Đặt giá trị của ViewBag.HoaDon về null
+            @{ Session["HoaDon"] = null; }
+        });
+    }
+
+        // Kiểm tra nếu Session["HoaDon"] không null
+        @if (Session["thembill"] != null)
+        {
+            <text>
+            Swal.fire({
+                title: 'Thông báo',
+                text: '@Session["thembill"]',
+                icon: 'info',
+                confirmButtonText: 'Đóng'
+            });
+            </text>
+            // Xóa thông báo sau khi hiển thị
+            Session["thembill"] = null;
+        }
+
+        @if (Session["themgiohang"] != null)
+        {
+     <text>
+    Swal.fire({
+    title: 'Thông báo',
+    text: 'Đăng nhập để sử dụng chức năng',
+    icon: 'info',
+    confirmButtonText: 'Đóng'
+});
+     </text>
+            // Xóa thông báo sau khi hiển thị
+            Session["themgiohang"] = null;
+        }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("SweetAlert2 script loaded and showLoginAlert function defined.");
+    });
+</script>
+
+    document.getElementById("sortOptions").onchange = function () {
+        var selectedOption = this.value;
+        if (selectedOption !== "#") {
+            window.location = selectedOption; // Chuyển hướng đến URL được chọn
+        }
+    };
+
+</script>
+
